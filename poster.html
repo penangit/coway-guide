@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coway Hot Water — Quick Reference Poster</title>
+<link rel="icon" href="https://static.neohotels.com/v3/assets/img/favicon.ico">
+<style>
+  @page { size: A4 landscape; margin: 8mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: #fff; color: #2D2D2D; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .poster { width: 280mm; height: 190mm; margin: 0 auto; padding: 6mm; overflow: hidden; }
+
+  /* HEADER */
+  .hdr { display: flex; align-items: center; justify-content: space-between; padding: 4mm 5mm; background: #2D2D2D; color: #fff; border-radius: 4mm; margin-bottom: 4mm; }
+  .hdr-left { display: flex; align-items: center; gap: 4mm; }
+  .hdr .logo { font-size: 16px; font-weight: 700; letter-spacing: 2px; text-transform: lowercase; }
+  .hdr .title { font-size: 18px; font-weight: 700; }
+  .hdr .sub { font-size: 9px; opacity: .6; }
+  .hdr-right { text-align: right; }
+  .hdr .model { font-family: monospace; font-size: 10px; opacity: .7; }
+  .hdr .hotel { font-size: 11px; font-weight: 600; color: #E8553A; }
+  .badge { display: inline-block; background: #E8553A; color: #fff; font-size: 8px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; margin-right: 3mm; }
+
+  /* MAIN GRID */
+  .grid { display: grid; grid-template-columns: 82mm 1fr; gap: 3mm; height: calc(190mm - 22mm); }
+
+  /* LEFT COLUMN */
+  .left { display: flex; flex-direction: column; gap: 3mm; }
+
+  /* PANEL */
+  .panel { background: #C8B8A0; border-radius: 3mm; padding: 3mm; }
+  .panel-title { font-size: 7px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; opacity: .6; margin-bottom: 2mm; }
+  .panel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2mm; }
+  .pb { background: rgba(255,255,255,.2); border-radius: 2mm; padding: 2mm 1mm; text-align: center; position: relative; }
+  .pb.hl { background: rgba(255,255,255,.4); outline: 1.5px solid #E8553A; outline-offset: 1px; }
+  .pb svg { width: 20px; height: 20px; margin: 0 auto 1mm; display: block; }
+  .pb .lbl { font-size: 7px; font-weight: 700; }
+  .pb .sub2 { font-size: 6px; color: #6B6B6B; }
+  .ind2 { width: 3px; height: 3px; border-radius: 50%; background: rgba(0,0,0,.15); margin: 0 auto 1mm; }
+  .ind2.on { background: #fff; }
+  .leds2 { position: absolute; right: 2px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 2px; }
+  .leds2 .d2 { width: 3px; height: 3px; border-radius: 50%; background: rgba(0,0,0,.15); }
+  .leds2 .d2.on { background: #fff; }
+  .panel-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm; margin-top: 2mm; }
+
+  /* LED STRIP */
+  .led-strip { background: #F5F0EA; border-radius: 3mm; padding: 3mm; }
+  .led-strip h4 { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2mm; }
+  .led-row2 { display: flex; gap: 2mm; }
+  .led-item { flex: 1; text-align: center; background: #fff; border-radius: 2mm; padding: 2mm; }
+  .led-item .dots2 { display: flex; justify-content: center; gap: 2px; margin-bottom: 1mm; }
+  .dot2 { width: 6px; height: 6px; border-radius: 50%; background: rgba(0,0,0,.1); border: 1px solid rgba(0,0,0,.08); }
+  .dot2.g { background: #4CAF50; border-color: #4CAF50; }
+  .dot2.b { background: #29B6F6; border-color: #29B6F6; }
+  .led-item .lt { font-size: 6px; font-weight: 600; color: #3A3A3A; }
+
+  /* BUTTON TIMING */
+  .timing { background: #F5F0EA; border-radius: 3mm; padding: 3mm; }
+  .timing h4 { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2mm; }
+  .timing table { width: 100%; font-size: 7px; border-collapse: collapse; }
+  .timing td { padding: 1mm 0; border-bottom: .5px solid rgba(0,0,0,.08); }
+  .timing td:last-child { font-weight: 700; text-align: right; }
+
+  /* RIGHT COLUMN */
+  .right { display: flex; flex-direction: column; gap: 3mm; }
+
+  /* STEPS */
+  .steps { flex: 1; display: flex; flex-direction: column; gap: 1.5mm; }
+  .step-row { display: flex; align-items: flex-start; gap: 2mm; }
+  .step-num { width: 18px; height: 18px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 9px; flex-shrink: 0; margin-top: 1px; }
+  .step-body { flex: 1; background: #F5F0EA; border-radius: 2mm; padding: 2mm 3mm; }
+  .step-body h5 { font-size: 8px; font-weight: 700; margin-bottom: .5mm; }
+  .step-body p { font-size: 7px; color: #6B6B6B; line-height: 1.4; }
+  .yn2 { display: inline-block; font-size: 6px; font-weight: 700; padding: 0.5px 4px; border-radius: 1.5px; margin-right: 2px; }
+  .yn2.y { background: #E8F5E9; color: #2E7D32; }
+  .yn2.n { background: #FFEBEE; color: #C62828; }
+
+  /* SCENARIOS */
+  .scen { background: #fff; border: 1px solid rgba(0,0,0,.08); border-radius: 3mm; overflow: hidden; }
+  .scen h4 { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 2mm 3mm; background: #2D2D2D; color: #fff; }
+  .scen table { width: 100%; font-size: 7px; border-collapse: collapse; }
+  .scen td { padding: 1.5mm 3mm; border-bottom: .5px solid rgba(0,0,0,.06); vertical-align: top; line-height: 1.3; }
+  .scen tr:nth-child(even) td { background: #F5F0EA; }
+  .scen td:first-child { width: 38%; color: #6B6B6B; }
+  .scen td:last-child { font-weight: 600; }
+
+  /* FOOTER BAR */
+  .ftr { display: flex; align-items: center; justify-content: space-between; padding: 2mm 3mm; background: #2D2D2D; color: #fff; border-radius: 2mm; margin-top: auto; }
+  .ftr .warn { font-size: 7px; color: #FFCDD2; display: flex; align-items: center; gap: 2mm; }
+  .ftr .phone { font-size: 14px; font-weight: 700; color: #E8553A; }
+  .ftr .phone-label { font-size: 7px; opacity: .5; }
+
+  /* LEVER DIAGRAM */
+  .lever-box { background: #FFF8E1; border: 1px solid #FFE082; border-radius: 2mm; padding: 2mm 3mm; display: flex; align-items: center; gap: 3mm; margin-top: 1mm; }
+  .lever-box .lbl2 { font-size: 7px; font-weight: 700; color: #8D6E00; }
+  .lever-icon { display: flex; gap: 2mm; align-items: center; }
+  .lever-sq { width: 14px; height: 18px; border-radius: 1.5px; border: 1.5px solid #8D6E00; display: flex; align-items: center; justify-content: center; font-size: 5px; font-weight: 700; color: #8D6E00; }
+  .lever-sq.hot { background: #FFEBEE; border-color: #E8553A; color: #E8553A; }
+  .lever-sq.cold { background: #E3F2FD; border-color: #4A90D9; color: #4A90D9; }
+
+  @media screen {
+    body { background: #eee; padding: 10px; }
+    .poster { background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,.15); border-radius: 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-left">
+      <div>
+        <div class="logo">coway</div>
+        <div class="sub">Core Plus CHP-5721L</div>
+      </div>
+      <div style="width:1px;height:24px;background:rgba(255,255,255,.2);margin:0 2mm"></div>
+      <div>
+        <span class="badge">Quick Reference</span>
+        <div class="title">Hot Water Troubleshooting</div>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <div class="hotel">Hotel NEO+ Penang</div>
+      <div class="model">14 floors · 196 rooms · All floors with Coway</div>
+    </div>
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="grid">
+
+    <!-- LEFT COLUMN -->
+    <div class="left">
+
+      <!-- PANEL DIAGRAM -->
+      <div class="panel">
+        <div class="panel-title">Control Panel</div>
+        <div class="panel-grid">
+          <!-- Hot -->
+          <div class="pb hl" style="position:relative">
+            <div class="ind2 on"></div>
+            <svg viewBox="0 0 40 40" fill="none"><path d="M12 28c0-2 2-4 2-7s-2-5-2-7c0-3 2-5 2-5" stroke="#3A3A3A" stroke-width="2.5" stroke-linecap="round"/><path d="M20 28c0-2 2-4 2-7s-2-5-2-7c0-3 2-5 2-5" stroke="#3A3A3A" stroke-width="2.5" stroke-linecap="round"/><path d="M28 28c0-2 2-4 2-7s-2-5-2-7c0-3 2-5 2-5" stroke="#3A3A3A" stroke-width="2.5" stroke-linecap="round"/></svg>
+            <div class="leds2"><div class="d2 on"></div><div class="d2 on"></div><div class="d2 on"></div></div>
+            <div class="lbl">Hot ♨</div>
+          </div>
+          <!-- Hot Lock -->
+          <div class="pb hl">
+            <div class="ind2"></div>
+            <svg viewBox="0 0 40 40" fill="none"><rect x="10" y="20" width="20" height="14" rx="2" stroke="#3A3A3A" stroke-width="2"/><path d="M15 20v-5a5 5 0 0110 0v5" stroke="#3A3A3A" stroke-width="2" stroke-linecap="round"/></svg>
+            <div class="lbl">Hot Lock</div>
+            <div class="sub2">3 sec</div>
+          </div>
+          <!-- Ambient -->
+          <div class="pb">
+            <div class="ind2"></div>
+            <svg viewBox="0 0 40 40" fill="none"><path d="M20 8c-1 4-4 6-4 12a6 6 0 0012 0c0-6-3-8-4-12z" stroke="#3A3A3A" stroke-width="2"/></svg>
+            <div class="lbl">Ambient</div>
+          </div>
+        </div>
+        <div class="panel-row2">
+          <!-- Cold -->
+          <div class="pb" style="position:relative">
+            <div class="ind2"></div>
+            <svg viewBox="0 0 40 40" fill="none"><line x1="20" y1="6" x2="20" y2="34" stroke="#3A3A3A" stroke-width="2"/><line x1="6" y1="20" x2="34" y2="20" stroke="#3A3A3A" stroke-width="2"/><line x1="10" y1="10" x2="30" y2="30" stroke="#3A3A3A" stroke-width="2"/><line x1="30" y1="10" x2="10" y2="30" stroke="#3A3A3A" stroke-width="2"/></svg>
+            <div class="leds2"><div class="d2"></div><div class="d2"></div><div class="d2"></div></div>
+            <div class="lbl">Cold ❄</div>
+          </div>
+          <!-- Amount -->
+          <div class="pb">
+            <div class="ind2"></div>
+            <svg viewBox="0 0 40 40" fill="none"><rect x="12" y="10" width="16" height="22" rx="2" stroke="#3A3A3A" stroke-width="2"/><line x1="15" y1="18" x2="25" y2="18" stroke="#3A3A3A" stroke-width="1.5"/><line x1="15" y1="22" x2="25" y2="22" stroke="#3A3A3A" stroke-width="1.5"/><line x1="15" y1="26" x2="25" y2="26" stroke="#3A3A3A" stroke-width="1.5"/></svg>
+            <div class="lbl">Amount</div>
+            <div class="sub2">0.5L · 1L · ∞</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOT LED STRIP -->
+      <div class="led-strip">
+        <h4>🔥 Hot Water LEDs (3 dots beside Hot button)</h4>
+        <div class="led-row2">
+          <div class="led-item"><div class="dots2"><div class="dot2"></div><div class="dot2"></div><div class="dot2"></div></div><div class="lt">OFF</div></div>
+          <div class="led-item"><div class="dots2"><div class="dot2 g"></div><div class="dot2"></div><div class="dot2"></div></div><div class="lt">Weak</div></div>
+          <div class="led-item"><div class="dots2"><div class="dot2 g"></div><div class="dot2 g"></div><div class="dot2"></div></div><div class="lt">Mild</div></div>
+          <div class="led-item" style="outline:1.5px solid #4CAF50;outline-offset:-1px"><div class="dots2"><div class="dot2 g"></div><div class="dot2 g"></div><div class="dot2 g"></div></div><div class="lt" style="color:#4CAF50">READY ✓</div></div>
+        </div>
+        <p style="font-size:6.5px;color:#6B6B6B;margin-top:1.5mm;line-height:1.4">Storage heating type — wait <strong>10–20 min</strong> to reheat 3.6L tank after heavy use. All 3 LEDs must be lit = hot water ready.</p>
+      </div>
+
+      <!-- COLD LED STRIP -->
+      <div class="led-strip">
+        <h4>❄️ Cold Water LEDs (3 dots beside Cold button)</h4>
+        <div class="led-row2">
+          <div class="led-item"><div class="dots2"><div class="dot2 b"></div><div class="dot2"></div><div class="dot2"></div></div><div class="lt">Slight</div></div>
+          <div class="led-item"><div class="dots2"><div class="dot2 b"></div><div class="dot2 b"></div><div class="dot2"></div></div><div class="lt">Medium</div></div>
+          <div class="led-item" style="outline:1.5px solid #29B6F6;outline-offset:-1px"><div class="dots2"><div class="dot2 b"></div><div class="dot2 b"></div><div class="dot2 b"></div></div><div class="lt" style="color:#1E88E5">COLDEST ✓</div></div>
+        </div>
+        <p style="font-size:6.5px;color:#6B6B6B;margin-top:1.5mm">Takes ~2 hours to fully cool. Hold Cold 3 sec to enable. Keep 10cm wall gap.</p>
+      </div>
+
+      <!-- BUTTON TIMING -->
+      <div class="timing">
+        <h4>⏱ Button Timing</h4>
+        <table>
+          <tr><td>Turn ON hot/cold</td><td>3 sec hold</td></tr>
+          <tr><td>Turn OFF hot/cold</td><td>7 sec hold</td></tr>
+          <tr><td>Toggle Hot Lock</td><td>3 sec hold</td></tr>
+          <tr><td>Select Ambient</td><td>Quick tap</td></tr>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="right">
+
+      <!-- STEPS -->
+      <div class="steps">
+        <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:1mm">Step-by-Step: Guest Reports "No Hot Water"</div>
+
+        <div class="step-row">
+          <div class="step-num" style="background:#F5A623">1</div>
+          <div class="step-body">
+            <h5>Check Hot indicator is ON</h5>
+            <p><span class="yn2 n">✗ OFF</span> Press & hold Hot button <strong>3 seconds</strong> to turn ON<br>
+            <span class="yn2 y">✓ ON</span> Good → Step 2</p>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num" style="background:#F5A623">2</div>
+          <div class="step-body">
+            <h5>Check Hot Lock indicator</h5>
+            <p><span class="yn2 n">✗ LOCK ON</span> Hold Hot Lock <strong>3 sec</strong> to unlock (hot water is disabled when locked)<br>
+            <span class="yn2 y">✓ LOCK OFF</span> Good → Step 3</p>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num" style="background:#4A90D9">3</div>
+          <div class="step-body">
+            <h5>Count the 3 Temperature LEDs</h5>
+            <p><span class="yn2 n">✗ 1-2 LEDs</span> Tank reheating — <strong>wait 10–20 min</strong> for all 3 LEDs to fill up<br>
+            <span class="yn2 y">✓ 3 LEDs</span> Ready! Test with <strong>LEFT lever within 7 sec</strong> of pressing Hot</p>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num" style="background:#F5A623">4</div>
+          <div class="step-body">
+            <h5>Check Low Water & Power</h5>
+            <p>Low Water lit → check tap valve (under sink) + hand valve (back of unit) + hoses. Confirm 240V plug.</p>
+          </div>
+        </div>
+
+        <div class="step-row">
+          <div class="step-num" style="background:#4CAF50">✓</div>
+          <div class="step-body">
+            <h5>3 LEDs on, hot water confirmed → inform guest ✓</h5>
+            <p>If issue persists after all checks → call <strong>Coway 1800-88-111</strong></p>
+          </div>
+        </div>
+
+        <!-- LEVER NOTE -->
+        <div class="lever-box">
+          <div class="lever-icon">
+            <div class="lever-sq hot">HOT</div>
+            <div class="lever-sq cold">C / A</div>
+          </div>
+          <div class="lbl2">Hot water = LEFT lever &nbsp;•&nbsp; Cold/Ambient = RIGHT lever &nbsp;•&nbsp; Must push within 7 sec or auto-switches to Ambient</div>
+        </div>
+      </div>
+
+      <!-- COMMON SCENARIOS -->
+      <div class="scen">
+        <h4>📋 Common Scenarios</h4>
+        <table>
+          <tr><td>Pressed hot, nothing comes out</td><td>Check Hot Lock → unlock. Use LEFT lever</td></tr>
+          <tr><td>Was hot, now lukewarm</td><td>Tank depleted. Wait 10-20 min for 3 LEDs</td></tr>
+          <tr><td>Keeps pressing, nothing happens</td><td>Auto-safety: press Hot → LEFT lever within 7 sec</td></tr>
+          <tr><td>Hot button light went OFF</td><td>Guest held 7+ sec. Hold Hot 3 sec to turn ON</td></tr>
+          <tr><td>White flakes in water</td><td>Limescale (normal). If severe → 1800-88-111</td></tr>
+        </table>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="ftr">
+        <div class="warn">⚠️ Do NOT open or disassemble. Hot water ≥80°C — keep children away!</div>
+        <div style="text-align:right">
+          <div class="phone-label">Coway Careline</div>
+          <div class="phone">1800-88-111</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>
